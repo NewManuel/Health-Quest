@@ -2,8 +2,8 @@
 const Homepage = () => {
   return (
     <div className="homepage">
-      <div className="logo-container">
-        <img src="./src/assets/images/logo.png" alt="Logo" className="logo" />
+      <div className="brand-container">
+        <h1 className="brand">HEALTH QUEST</h1>
       </div>
       <div className="button-container">
         <button className="login-button">Login</button>
