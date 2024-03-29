@@ -5,6 +5,7 @@ import App from './App.jsx';
 import Home from './pages/HomePage.jsx';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Dashboard from './pages/Dashboard.jsx';
 import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import ErrorPage from './pages/ErrorPage';
@@ -24,7 +25,12 @@ const router = createBrowserRouter([
       }, {
         path: '/signup',
         element: <Signup />
-      }, {
+      },
+      {
+        path: '/dashboard',
+        element: <Dashboard />
+      },
+      {
         path: '/profiles/:username',
         element: <Profile />
       }, {
