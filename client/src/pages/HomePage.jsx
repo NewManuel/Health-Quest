@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 
 const Homepage = () => {
   return (
@@ -6,8 +8,12 @@ const Homepage = () => {
         <h1 className="brand">HEALTH QUEST</h1>
       </div>
       <div className="button-container">
-        <button className="login-button">Login</button>
-        <button className="signup-button">Sign Up</button>
+        <Link className="login-button" to="/login">
+          Login
+        </Link>
+        <Link className="signup-button" to="/signup">
+          Sign Up
+        </Link>
       </div>
     </div>
   );
