@@ -1,0 +1,24 @@
+[
+  {
+    "user": "Lernantino",
+    "question1": true,
+    "question2": false,
+    "question3": true,
+    "question4": true,
+    "question5": false,
+    "question6": true,
+    "question7": false,
+    "question8": true
+  },
+  {
+    "user": "Kent Beck",
+    "question1": false,
+    "question2": true,
+    "question3": false,
+    "question4": true,
+    "question5": true,
+    "question6": false,
+    "question7": true,
+    "question8": false
+  }
+]
