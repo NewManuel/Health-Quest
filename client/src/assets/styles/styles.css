@@ -202,6 +202,42 @@ header p {
   /* Example text color on hover */
 }
 
+.view-entries-button {
+  background-color: #fff;
+  /* Example background color for button */
+  color: #007bff;
+  /* Example text color for button */
+  border: 1px solid #fff;
+  /* Example border for button */
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  /* Example font size for mobile */
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.view-entries-button:hover {
+  background-color: #007bff;
+  /* Example background color on hover */
+  color: #fff;
+  /* Example text color on hover */
+}
+
+.header-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  max-width: 800px;
+  align-items: center;
+}
+
+.header-buttons>* {
+  margin: 10px 0;
+  /* Adjust the top and bottom margins for the buttons */
+}
+
 footer {
   color: white;
   /* Example text color */
@@ -302,9 +338,10 @@ footer h4 {
   border-radius: 8px;
 }
 
+
 /* Media Query for Mobile First Design */
 @media screen and (min-width: 768px) {
-  .homepage {
-    /* Add styles for larger screens if necessary */
+  .header-buttons {
+    flex-direction: row;
   }
 }
