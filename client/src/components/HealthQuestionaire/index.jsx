@@ -3,20 +3,38 @@ import { useState, useEffect } from 'react';
 const HealthQuestionnaire = () => {
     // Get today's date
     const today = new Date();
-    const dateString = today.toLocaleDateString();
+
+    function getOrdinalSuffix(day) {
+        if (day >= 11 && day <= 13) {
+            return 'th';
+        } else {
+            switch (day % 10) {
+                case 1: return 'st';
+                case 2: return 'nd';
+                case 3: return 'rd';
+                default: return 'th';
+            }
+        }
+    }
+
+    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    const dayOfWeek = weekdays[today.getDay()];
+    const month = months[today.getMonth()];
+    const dayOfMonth = today.getDate();
+    const year = today.getFullYear();
+
+    const dateString = `${dayOfWeek}, ${month} ${dayOfMonth}${getOrdinalSuffix(dayOfMonth)}, ${year}`;
+    console.log(dateString);
 
     const [scores, setScores] = useState({
-        sunlight: 0,
         hydration: 0,
         nourishment: 0,
         education: 0,
-        habits: 0,
         exercise: 0,
-        journal: 0,
         connections: 0,
         sleep: 0,
-        mindfulness: 0,
-        joyRelaxation: 0,
         gratitude: 0,
         processedFoods: 0
     });
@@ -104,20 +122,15 @@ const HealthQuestionnaire = () => {
     };
 
     return (<>
-        <p>Today is {dateString}</p>
+        <p> Today is {dayOfWeek}, {month} {dayOfMonth}<span style={{ verticalAlign: 'super', fontSize: 'smaller' }}>{getOrdinalSuffix(dayOfMonth)}</span> {year}</p>
         <p>{randomAffirmation}</p>
-        <p>Did you get sunlight today? <input type="checkbox" name="sunlight" onChange={handleCheckboxChange} /> yes</p>
         <p>Did you adequately hydrate today? <input type="checkbox" name="hydration" onChange={handleCheckboxChange} /> yes</p>
         <p>Did you nourish your body with whole foods today? <input type="checkbox" name="nourishment" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you read something educational today? <input type="checkbox" name="education" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you avoid negative habits today? <input type="checkbox" name="habits" onChange={handleCheckboxChange} /> yes</p>
+        <p>Did you learn something new today? <input type="checkbox" name="education" onChange={handleCheckboxChange} /> yes</p>
         <p>Did you exercise today? <input type="checkbox" name="exercise" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you journal today? <input type="checkbox" name="journal" onChange={handleCheckboxChange} /> yes</p>
         <p>Did you connect with family or friends today? <input type="checkbox" name="connections" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you get enough sleep last night?  <input type="checkbox" name="sleep" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you practice mindfulness or meditation today?   <input type="checkbox" name="mindfulness" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you engage in activities that bring you joy and relaxation today?  <input type="checkbox" name="joyRelaxation" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you practice gratitude or positive affirmations today?  <input type="checkbox" name="gratitude" onChange={handleCheckboxChange} /> yes</p>
+        <p>Did you get adequate sleep last night?  <input type="checkbox" name="sleep" onChange={handleCheckboxChange} /> yes</p>
+        <p>Did you practice gratitude today?  <input type="checkbox" name="gratitude" onChange={handleCheckboxChange} /> yes</p>
         <p>Did you limit your intake of sugary or processed foods today?   <input type="checkbox" name="processedFoods" onChange={handleCheckboxChange} /> yes</p>
         <p>Monitoring these activities is important because it allows you to track progress, identify patterns, promote accountability, raise awareness, and make informed decisions about your health and well-being. Overall, monitoring empowers you to take control of your lifestyle and make choices that support a happier, healthier you.
         </p>
