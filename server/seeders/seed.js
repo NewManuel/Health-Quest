@@ -1,33 +1,39 @@
 const db = require('../config/connection');
-const { User, Thought } = require('../models');
+const { User, Questionnaire } = require('../models');
 const userSeeds = require('./userSeeds.json');
-const thoughtSeeds = require('./thoughtSeeds.json');
+const questionnaireSeeds = require('./questionnaireSeeds.json');
 const cleanDB = require('./cleanDB');
 
 db.once('open', async () => {
   try {
-    await cleanDB('Thought', 'thoughts');
-
+    // Clean existing data
+    await cleanDB('Questionnaire', 'questionnaires');
     await cleanDB('User', 'users');
 
-    await User.create(userSeeds);
+    // Create users
+    const createdUsers = await User.create(userSeeds);
 
-    for (let i = 0; i < thoughtSeeds.length; i++) {
-      const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
-      const user = await User.findOneAndUpdate(
-        { username: thoughtAuthor },
-        {
-          $addToSet: {
-            thoughts: _id,
-          },
-        }
-      );
+    // Generate questionnaires and associate them with users
+    for (let i = 0; i < questionnaireSeeds.length; i++) {
+      const { user: username, ...questionnaireSeed } = questionnaireSeeds[i];
+      const user = createdUsers.find(user => user.username === username);
+
+      if (user) {
+        const questionnaire = await Questionnaire.create({
+          ...questionnaireSeed,
+          user: user._id,
+        });
+
+        user.questionnaires.push(questionnaire._id);
+        await user.save();
+      } else {
+        console.error(`User '${username}' not found.`);
+      }
     }
+
+    console.log('Database populated successfully.');
   } catch (err) {
-    console.error(err);
+    console.error('Error populating database:', err);
     process.exit(1);
   }
-
-  console.log('all done!');
-  process.exit(0);
 });
