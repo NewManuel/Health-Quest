@@ -54,9 +54,19 @@ const HealthQuestionnaire = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-
-        } catch {
-            
+            const profile = Auth.getProfile();
+            const username = profile?.data?.username;
+            //console.log(username);
+            //console.log(scores.hydration);
+            const { data } = await addQuestionnaire({
+                variables: {
+                    questionnaireAuthor: username,
+                    ...scores
+                }
+            });
+            console.log('Questionnaire added:', data); // Log the response data
+        } catch (err) {
+            console.error('Error adding questionnaire:', err); // Log any errors
         }
         calculateTotalScore(); // Make sure totalScore is updated
         setTotalScore((currentTotalScore) => {
