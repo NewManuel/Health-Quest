@@ -47,19 +47,12 @@ const resolvers = {
 
       return { token, user };
     },
-    addQuestionnaire: async (parent, { input }, context) => {
-      // Check if the user is authenticated
-      if (!context.user) {
-        throw new AuthenticationError('You need to be logged in to add a questionnaire.');
-      }
+    addQuestionnaire: async (parent, { question1, question2, question3, question4, question5, question6, question7, question8 }, context) => {
 
-      // Destructure input object to extract questionnaire details
-      const { question1, question2, question3, question4, question5, question6, question7, question8 } = input;
-
-      try {
+      if (context.user) {
         // Create the questionnaire with the provided details
         const questionnaire = await Questionnaire.create({
-          user: context.user._id,
+          questionnaireAuthor: context.user.username,
           question1,
           question2,
           question3,
@@ -70,12 +63,14 @@ const resolvers = {
           question8,
         });
 
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { questionnaires: questionnaire._id } }
+        );
         // Return the created questionnaire
         return questionnaire;
-      } catch (error) {
-        // Throw an error if questionnaire creation fails
-        throw new Error('Failed to add questionnaire. Please try again later.');
       }
+      throw AuthenticationError;
     },
     removeQuestionnaire: async (parent, { questionnaireId }, context) => {
       if (context.user) {
