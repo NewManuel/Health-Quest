@@ -9,7 +9,7 @@ const typeDefs = `
 
   type Questionnaire {
     _id: ID
-    user: User!
+    questionnaireAuthor: String
     question1: Boolean
     question2: Boolean
     question3: Boolean
@@ -38,7 +38,7 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addQuestionnaire(questionnaireText: String!): Questionnaire
+    addQuestionnaire(question1: Boolean!, question2: Boolean!, question3: Boolean!, question4: Boolean!, question5: Boolean!, question6: Boolean!, question7: Boolean!, question8: Boolean!): Questionnaire
     addComment(questionnaireId: ID!, commentText: String!): Questionnaire
     removeQuestionnaire(questionnaireId: ID!): Questionnaire
     removeComment(questionnaireId: ID!, commentId: ID!): Questionnaire

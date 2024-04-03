@@ -1,10 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const questionnaireSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+  questionnaireAuthor: {
+    type: String,
+    required: true,
+    trim: true,
   },
   // Boolean fields for each question in the questionnaire
   question1: {

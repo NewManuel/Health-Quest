@@ -1,6 +1,6 @@
 [
   {
-    "user": "Lernantino",
+    "questionnaireAuthor": "Lernantino",
     "question1": true,
     "question2": false,
     "question3": true,
@@ -11,7 +11,7 @@
     "question8": true
   },
   {
-    "user": "Kent Beck",
+    "questionnaireAuthor": "C.A.R. Hoare",
     "question1": false,
     "question2": true,
     "question3": false,
