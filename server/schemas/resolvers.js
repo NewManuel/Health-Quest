@@ -1,4 +1,4 @@
-const { User, Thought } = require("../models");
+const { User, Thought, Questionnaire } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -46,23 +46,6 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-    },
-    addThought: async (parent, { thoughtText }, context) => {
-      if (context.user) {
-        const thought = await Thought.create({
-          thoughtText,
-          thoughtAuthor: context.user.username,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
-        );
-
-        return thought;
-      }
-      throw AuthenticationError;
-      ("You need to be logged in!");
     },
     removeQuestionnaire: async (parent, { questionnaireId }, context) => {
       if (context.user) {
