@@ -4,10 +4,8 @@
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+  font-variation-settings: "wdth" 100;
 }
-
 
 body {
   margin: 0;
@@ -31,7 +29,11 @@ h4 {
 
 .container {
   background: rgb(0, 100, 0);
-  background: linear-gradient(180deg, rgba(0, 100, 0, 1) 0%, rgba(0, 74, 100, 1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 100, 0, 1) 0%,
+    rgba(0, 74, 100, 1) 100%
+  );
 }
 
 .homepage {
@@ -52,8 +54,7 @@ h4 {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+  font-variation-settings: "wdth" 100;
 }
 
 .logo {
@@ -233,7 +234,7 @@ header p {
   align-items: center;
 }
 
-.header-buttons>* {
+.header-buttons > * {
   margin: 10px 0;
   /* Adjust the top and bottom margins for the buttons */
 }
@@ -253,7 +254,6 @@ footer h4 {
   /* Remove default margin */
 }
 
-
 .emoji {
   font-size: 18px;
   /* Example font size for emoji */
@@ -272,7 +272,7 @@ footer h4 {
 }
 
 .dashboard-container:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -283,7 +283,7 @@ footer h4 {
 }
 
 .dashboard-container:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0px;
@@ -295,7 +295,7 @@ footer h4 {
   border-bottom-right-radius: 10px;
 }
 
-.dashboard-container>* {
+.dashboard-container > * {
   margin-top: 20px;
 }
 
@@ -311,7 +311,7 @@ footer h4 {
 }
 
 .dashboard-container p::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: -5px;
@@ -324,7 +324,7 @@ footer h4 {
 }
 
 .submit-button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   /* Green */
   border: none;
   color: white;
@@ -337,7 +337,6 @@ footer h4 {
   cursor: pointer;
   border-radius: 8px;
 }
-
 
 /* Media Query for Mobile First Design */
 @media screen and (min-width: 768px) {
