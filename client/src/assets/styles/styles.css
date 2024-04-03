@@ -174,13 +174,6 @@ header h1 {
   /* Example font size for mobile */
 }
 
-header p {
-  font-size: 16px;
-  /* Example font size for mobile */
-  line-height: 1.4;
-  /* Example line height for better readability */
-  margin-bottom: 20px;
-}
 
 .logout-button {
   background-color: #fff;
@@ -269,6 +262,13 @@ footer h4 {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: relative;
+}
+
+.dashboardMessageContainer{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  color: white;
 }
 
 .dashboard-container:before {

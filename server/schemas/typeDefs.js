@@ -4,22 +4,22 @@ const typeDefs = `
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
+    questionnaires: [Questionnaire]!
   }
 
-  type Thought {
+  type Questionnaire {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
+    user: User!
+    question1: Boolean
+    question2: Boolean
+    question3: Boolean
+    question4: Boolean
+    question5: Boolean
+    question6: Boolean
+    question7: Boolean
+    question8: Boolean
     createdAt: String
-    comments: [Comment]!
-  }
-
-  type Comment {
-    _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
+    updatedAt: String
   }
 
   type Auth {
@@ -30,18 +30,18 @@ const typeDefs = `
   type Query {
     users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
+    questionnaires(username: String): [Questionnaire]
+    questionnaire(questionnaireId: ID!): Questionnaire
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addQuestionnaire(questionnaireText: String!): Questionnaire
+    addComment(questionnaireId: ID!, commentText: String!): Questionnaire
+    removeQuestionnaire(questionnaireId: ID!): Questionnaire
+    removeComment(questionnaireId: ID!, commentId: ID!): Questionnaire
   }
 `;
 

@@ -9,18 +9,16 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate("thoughts");
     },
-    thoughts: async (parent, { username }) => {
+    questionnaires: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+      return Questionnaire.find(params).sort({ createdAt: -1 });
     },
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    questionnaire: async (parent, { questionnaireId }) => {
+      return Questionnaire.findOne({ _id: questionnaireId });
     },
     me: async (parent, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate(
-          "questionnaires"
-        );
+        return User.findOne({ _id: context.user._id }).populate("thoughts");
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -66,53 +64,19 @@ const resolvers = {
       throw AuthenticationError;
       ("You need to be logged in!");
     },
-    addComment: async (parent, { thoughtId, commentText }, context) => {
+    removeQuestionnaire: async (parent, { questionnaireId }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      throw AuthenticationError;
-    },
-    removeThought: async (parent, { thoughtId }, context) => {
-      if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
+        const questionnaire = await Questionnaire.findOneAndDelete({
+          _id: questionnaireId,
+          questionnaireAuthor: context.user.username,
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
+          { $pull: { questionnaires: questionnaire._id } }
         );
 
-        return thought;
-      }
-      throw AuthenticationError;
-    },
-    removeComment: async (parent, { thoughtId, commentId }, context) => {
-      if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $pull: {
-              comments: {
-                _id: commentId,
-                commentAuthor: context.user.username,
-              },
-            },
-          },
-          { new: true }
-        );
+        return questionnaire;
       }
       throw AuthenticationError;
     },
