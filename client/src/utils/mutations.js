@@ -24,17 +24,21 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+export const ADD_QUESTIONNAIRE = gql`
+  mutation addQuestionnaire($question1: Boolean!, $question2: Boolean!, $question3: Boolean!, $question4: Boolean!, $question5: Boolean!, $question6: Boolean!, $question7: Boolean!, $question8: Boolean!) {
+    addQuestionnaire(question1: $question1, question2: $question2, question3: $question3, question4: $question4, question5: $question5, question6: $question6, question7: $question7, question8: $question8) {
       _id
-      thoughtText
-      thoughtAuthor
+      questionnaireAuthor
+      question1
+      question2
+      question3
+      question4
+      question5
+      question6
+      question8
+      question7
       createdAt
-      comments {
-        _id
-        commentText
-      }
+      updatedAt
     }
   }
 `;
