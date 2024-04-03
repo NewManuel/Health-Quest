@@ -25,20 +25,20 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_QUESTIONNAIRE = gql`
-  mutation addQuestionnaire($question1: Boolean!, $question2: Boolean!, $question3: Boolean!, $question4: Boolean!, $question5: Boolean!, $question6: Boolean!, $question7: Boolean!, $question8: Boolean!) {
-    addQuestionnaire(question1: $question1, question2: $question2, question3: $question3, question4: $question4, question5: $question5, question6: $question6, question7: $question7, question8: $question8) {
+  mutation addQuestionnaire($questionnaireAuthor: String!, $hydration: Int!, $nourishment: Int!, $education: Int!, $exercise: Int!, $connections: Int!, $sleep: Int!, $gratitude: Int!, $processedFoods: Int!) {
+    addQuestionnaire(questionnaireAuthor: $questionnaireAuthor, hydration: $hydration, nourishment: $nourishment, education: $education, exercise: $exercise, connections: $connections, sleep: $sleep, gratitude: $gratitude, processedFoods: $processedFoods) {
       _id
       questionnaireAuthor
-      question1
-      question2
-      question3
-      question4
-      question5
-      question6
-      question8
-      question7
-      createdAt
+      hydration
+      education
+      nourishment
+      exercise
+      connections
+      sleep
+      gratitude
+      processedFoods
       updatedAt
+      createdAt
     }
   }
 `;

@@ -10,17 +10,18 @@ const typeDefs = `
   type Questionnaire {
     _id: ID
     questionnaireAuthor: String
-    question1: Boolean
-    question2: Boolean
-    question3: Boolean
-    question4: Boolean
-    question5: Boolean
-    question6: Boolean
-    question7: Boolean
-    question8: Boolean
+    hydration: Int
+    nourishment: Int
+    education: Int
+    exercise: Int
+    connections: Int
+    sleep: Int
+    gratitude: Int
+    processedFoods: Int
     createdAt: String
     updatedAt: String
   }
+  
 
   type Auth {
     token: ID!
@@ -38,8 +39,17 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addQuestionnaire(question1: Boolean!, question2: Boolean!, question3: Boolean!, question4: Boolean!, question5: Boolean!, question6: Boolean!, question7: Boolean!, question8: Boolean!): Questionnaire
-    addComment(questionnaireId: ID!, commentText: String!): Questionnaire
+    addQuestionnaire(
+        questionnaireAuthor: String!,
+        hydration: Int!,
+        nourishment: Int!,
+        education: Int!,
+        exercise: Int!,
+        connections: Int!,
+        sleep: Int!,
+        gratitude: Int!,
+        processedFoods: Int!
+      ): Questionnaire
     removeQuestionnaire(questionnaireId: ID!): Questionnaire
     removeComment(questionnaireId: ID!, commentId: ID!): Questionnaire
   }

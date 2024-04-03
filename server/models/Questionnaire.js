@@ -6,37 +6,36 @@ const questionnaireSchema = new Schema({
     required: true,
     trim: true,
   },
-  // Boolean fields for each question in the questionnaire
-  question1: {
-    type: Boolean,
+  hydration: {
+    type: Number, // Assuming scores are numerical values
     required: true
   },
-  question2: {
-    type: Boolean,
+  nourishment: {
+    type: Number,
     required: true
   },
-  question3: {
-    type: Boolean,
+  education: {
+    type: Number,
     required: true
   },
-  question4: {
-    type: Boolean,
+  exercise: {
+    type: Number,
     required: true
   },
-  question5: {
-    type: Boolean,
+  connections: {
+    type: Number,
     required: true
   },
-  question6: {
-    type: Boolean,
+  sleep: {
+    type: Number,
     required: true
   },
-  question7: {
-    type: Boolean,
+  gratitude: {
+    type: Number,
     required: true
   },
-  question8: {
-    type: Boolean,
+  processedFoods: {
+    type: Number,
     required: true
   },
   // Timestamps
