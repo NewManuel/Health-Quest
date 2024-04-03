@@ -47,20 +47,19 @@ const resolvers = {
 
       return { token, user };
     },
-    addQuestionnaire: async (parent, { question1, question2, question3, question4, question5, question6, question7, question8 }, context) => {
-
+    addQuestionnaire: async (parent, { questionnaireAuthor, hydration, nourishment, education, exercise, connections, sleep, gratitude, processedFoods }, context) => {
       if (context.user) {
         // Create the questionnaire with the provided details
         const questionnaire = await Questionnaire.create({
           questionnaireAuthor: context.user.username,
-          question1,
-          question2,
-          question3,
-          question4,
-          question5,
-          question6,
-          question7,
-          question8,
+          hydration,
+          nourishment,
+          education,
+          exercise,
+          connections,
+          sleep,
+          gratitude,
+          processedFoods
         });
 
         await User.findOneAndUpdate(
@@ -70,7 +69,7 @@ const resolvers = {
         // Return the created questionnaire
         return questionnaire;
       }
-      throw AuthenticationError;
+      throw AuthenticationError('You must be logged in to perform this action');
     },
     removeQuestionnaire: async (parent, { questionnaireId }, context) => {
       if (context.user) {

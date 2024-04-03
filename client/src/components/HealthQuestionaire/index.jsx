@@ -10,6 +10,8 @@ import { affirmations } from '../../utils/affirmations.js';
 const HealthQuestionnaire = () => {
     const dateString = getFormattedDateString();
 
+    const [addQuestionnaire] = useMutation(ADD_QUESTIONNAIRE);
+
     const [scores, setScores] = useState({
         hydration: 0,
         nourishment: 0,
@@ -49,7 +51,13 @@ const HealthQuestionnaire = () => {
     };
 
 
-    const handleSubmit = () => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+
+        } catch {
+            
+        }
         calculateTotalScore(); // Make sure totalScore is updated
         setTotalScore((currentTotalScore) => {
             alert(`Your total score is: ${currentTotalScore}`); // Use currentTotalScore (updated value)

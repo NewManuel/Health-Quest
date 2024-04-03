@@ -1,24 +1,24 @@
 [
   {
     "questionnaireAuthor": "Lernantino",
-    "question1": true,
-    "question2": false,
-    "question3": true,
-    "question4": true,
-    "question5": false,
-    "question6": true,
-    "question7": false,
-    "question8": true
+    "hydration": 1,
+    "nourishment": 0,
+    "education": 1,
+    "exercise": 1,
+    "connections": 0,
+    "sleep": 1,
+    "gratitude": 0,
+    "processedFoods": 1
   },
   {
     "questionnaireAuthor": "C.A.R. Hoare",
-    "question1": false,
-    "question2": true,
-    "question3": false,
-    "question4": true,
-    "question5": true,
-    "question6": false,
-    "question7": true,
-    "question8": false
+    "hydration": 0,
+    "nourishment": 1,
+    "education": 0,
+    "exercise": 1,
+    "connections": 1,
+    "sleep": 0,
+    "gratitude": 1,
+    "processedFoods": 0
   }
 ]
