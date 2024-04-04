@@ -46,9 +46,12 @@ export const ADD_QUESTIONNAIRE = gql`
 export const UPDATE_USER = gql`
   mutation updateUser($username: String, $email: String) {
     updateUser(username: $username, email: $email) {
-      _id
-      username
-      email
+      token
+      user {
+        _id
+        username
+        email
+      }
     }
 }`
 

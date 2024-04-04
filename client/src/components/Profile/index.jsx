@@ -6,7 +6,6 @@ import Auth from '../../utils/auth';
 
 const ProfileComponent = () => {
   const navigate = useNavigate();
-  console.log(Auth.getProfile.data);
   const [formData, setFormData] = useState({
     username: Auth.getProfile().data.username,
     email: Auth.getProfile().data.email
@@ -29,8 +28,12 @@ const ProfileComponent = () => {
         variables: { ...formData }
       });
       console.log('Profile updated:', data);
+
+      // Set the new token in local storage
+      Auth.redirect(data.updateUser.token);
+
       // Set success message and redirect after 3 seconds
-      setSuccessMessage('Profile updated successfully! Redirecting to your dashboard.');
+      setSuccessMessage('Profile updated successfully! Redirecting to your notebook.');
       setTimeout(() => {
         navigate(`/dashboard`);
       }, 3000); // Redirect after 3 seconds
