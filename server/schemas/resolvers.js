@@ -30,7 +30,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    updateUser: async (parent, { username, email, password }, context) => {
+    updateUser: async (parent, { username, email }, context) => {
       try {
         // Get the user ID from the context
         const userId = context.user._id;
@@ -47,9 +47,7 @@ const resolvers = {
         if (email) {
           user.email = email;
         }
-        if (password) {
-          user.password = password;
-        }
+    
         if (username) {
           user.username = username;
         }

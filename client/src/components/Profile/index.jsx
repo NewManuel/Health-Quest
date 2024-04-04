@@ -6,10 +6,10 @@ import Auth from '../../utils/auth';
 
 const ProfileComponent = () => {
   //const history = useHistory();
+  console.log(Auth.getProfile.data);
   const [formData, setFormData] = useState({
     username: Auth.getProfile().data.username,
-    email: '',
-    password: ''
+    email: Auth.getProfile().data.email
   });
   const [updateUser] = useMutation(UPDATE_USER);
 
@@ -57,16 +57,6 @@ const ProfileComponent = () => {
             id="email"
             name="email"
             value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
             onChange={handleChange}
           />
         </div>
