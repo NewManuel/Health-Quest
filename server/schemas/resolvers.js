@@ -1,4 +1,5 @@
 const { User, Questionnaire } = require('../models');
+const { findById } = require('../models/User');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -9,10 +10,35 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('questionnaires');
     },
-    questionnaires: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Questionnaire.find(params).sort({ createdAt: -1 });
+    questionnaires: async (parent, { userId }) => {
+      console.log("User ID:", userId); // Log the user ID parameter
+      try {
+        // Find the user by their ID
+        const user = await User.findById(userId);
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        // Retrieve the questionnaire IDs associated with the user
+        const questionnaireIds = user.questionnaires;
+
+        // Fetch the questionnaires based on their IDs
+        const questionnaires = await Promise.all(questionnaireIds.map(async (questionnaireId) => {
+          const questionnaire = await Questionnaire.findById(questionnaireId);
+          return questionnaire;
+        }));
+
+        // Sort the questionnaires by createdAt
+        const sortedQuestionnaires = questionnaires.sort((a, b) => b.createdAt - a.createdAt);
+
+        return sortedQuestionnaires;
+      } catch (error) {
+        console.error("Error fetching questionnaires:", error);
+        throw new Error("Failed to fetch questionnaires.");
+      }
     },
+
+
     questionnaire: async (parent, { questionnaireId }) => {
       return Questionnaire.findOne({ _id: questionnaireId });
     },

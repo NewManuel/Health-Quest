@@ -15,13 +15,21 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+export const QUERY_QUESTIONNAIRES = gql`
+  query questionnaires($userId: String) {
+    questionnaires(userId: $userId) {
       _id
-      thoughtText
-      thoughtAuthor
+      questionnaireAuthor
+      hydration
+      nourishment
+      education
+      exercise
+      connections
+      sleep
+      gratitude
+      processedFoods
       createdAt
+      updatedAt
     }
   }
 `;
