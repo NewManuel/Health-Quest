@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_QUESTIONNAIRE } from '../../utils/mutations';
+import ConfettiComponent from '../Confetti/index.jsx';
 
 import Auth from '../../utils/auth';
 import { getFormattedDateString, getOrdinalSuffix } from '../../utils/weekday.js';
@@ -9,6 +10,8 @@ import { affirmations } from '../../utils/affirmations.js';
 
 const HealthQuestionnaire = () => {
     const dateString = getFormattedDateString();
+    const [showSubmitButton, setShowSubmitButton] = useState(true);
+
 
     const [addQuestionnaire] = useMutation(ADD_QUESTIONNAIRE);
 
@@ -25,6 +28,10 @@ const HealthQuestionnaire = () => {
 
     const [totalScore, setTotalScore] = useState(0);
     const [randomAffirmation, setRandomAffirmation] = useState('');
+
+    const [submitted, setSubmitted] = useState(false); //State to track if the questionnaire has been submitted
+    const [showConfetti, setShowConfetti] = useState(false);
+
 
     useEffect(() => {
         // Pick a random affirmation from the list
@@ -65,33 +72,49 @@ const HealthQuestionnaire = () => {
                 }
             });
             console.log('Questionnaire added:', data); // Log the response data
+            setShowConfetti(true);
+
         } catch (err) {
             console.error('Error adding questionnaire:', err); // Log any errors
         }
+        setSubmitted(true);
+        setShowSubmitButton(false);
         calculateTotalScore(); // Make sure totalScore is updated
-        setTotalScore((currentTotalScore) => {
-            alert(`Your total score is: ${currentTotalScore}`); // Use currentTotalScore (updated value)
-            return currentTotalScore; // Return the updated value to maintain state consistency
-        });
+        // setTotalScore((currentTotalScore) => {
+        //     return currentTotalScore; // Return the updated value to maintain state consistency
+        // });
     };
 
-    return (<>
-        <p>Today is {dateString}</p>
-        <p>{randomAffirmation}</p>
-        <p>Did you adequately hydrate today? <input type="checkbox" name="hydration" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you nourish your body with whole foods today? <input type="checkbox" name="nourishment" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you learn something new today? <input type="checkbox" name="education" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you exercise today? <input type="checkbox" name="exercise" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you connect with family or friends today? <input type="checkbox" name="connections" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you get adequate sleep last night?  <input type="checkbox" name="sleep" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you practice gratitude today?  <input type="checkbox" name="gratitude" onChange={handleCheckboxChange} /> yes</p>
-        <p>Did you limit your intake of sugary or processed foods today?   <input type="checkbox" name="processedFoods" onChange={handleCheckboxChange} /> yes</p>
-        <p>Monitoring these activities is important because it allows you to track progress, identify patterns, promote accountability, raise awareness, and make informed decisions about your health and well-being. Overall, monitoring empowers you to take control of your lifestyle and make choices that support a happier, healthier you.
-        </p>
-        <div className='center'>
-            <button className="submit-button" onClick={handleSubmit}>Submit</button>
-        </div>
-    </>
+    return (
+        <div className="health-questionnaire-container">
+            <p>Today is {dateString}</p>
+            <p>{randomAffirmation}</p>
+            <p>Did you adequately hydrate today? <input type="checkbox" name="hydration" onChange={handleCheckboxChange} /> yes</p>
+            <p>Did you nourish your body with whole foods today? <input type="checkbox" name="nourishment" onChange={handleCheckboxChange} /> yes</p>
+            <p>Did you learn something new today? <input type="checkbox" name="education" onChange={handleCheckboxChange} /> yes</p>
+            <p>Did you exercise today? <input type="checkbox" name="exercise" onChange={handleCheckboxChange} /> yes</p>
+            <p>Did you connect with family or friends today? <input type="checkbox" name="connections" onChange={handleCheckboxChange} /> yes</p>
+            <p>Did you get adequate sleep last night?  <input type="checkbox" name="sleep" onChange={handleCheckboxChange} /> yes</p>
+            <p>Did you practice gratitude today?  <input type="checkbox" name="gratitude" onChange={handleCheckboxChange} /> yes</p>
+            <p>Did you limit your intake of sugary or processed foods today?   <input type="checkbox" name="processedFoods" onChange={handleCheckboxChange} /> yes</p>
+            <p>Monitoring these activities is important because it allows you to track progress, identify patterns, promote accountability, raise awareness, and make informed decisions about your health and well-being. Overall, monitoring empowers you to take control of your lifestyle and make choices that support a happier, healthier you.
+            </p>
+            {showSubmitButton && (
+                <div className='center'>
+                    <button className="submit-button" onClick={handleSubmit}>Submit</button>
+                </div>
+            )}
+            {submitted && (
+                <div className="total-score-container">
+                    <p>Your healthy habit score for today is: {totalScore}</p>
+                </div>
+            )}
+            {showConfetti && (
+                <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 9999 }}>
+                    <ConfettiComponent duration={3} numberOfPieces={500} />
+                </div>
+            )}
+        </div >
     );
 };
 
