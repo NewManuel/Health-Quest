@@ -1,5 +1,6 @@
 import Header from "../components/Header";
-import DashboardInformationalMessage from "../components/DashboardInformationalMessage";
+import Footer from "../components/Footer";
+import DashboardInformationalMessage from "../components/DashboardInfoMessage";
 import HealthQuestionnaire from "../components/HealthQuestionaire";
 import Footer from "../components/Footer";
 

@@ -173,6 +173,14 @@ header h1 {
   /* Example font size for mobile */
 }
 
+.dashboardMessageContainer{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  color: white;
+  font-size: x-large;
+  line-height: 1.3;
+}
 
 .logout-button {
   background-color: #fff;
