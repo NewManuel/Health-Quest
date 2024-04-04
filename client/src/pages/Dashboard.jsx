@@ -1,15 +1,14 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import DashboardInformationalMessage from "../components/DashboardInfoMessage";
+import DashboardInfoMessage from "../components/DashboardInfoMessage";
 import HealthQuestionnaire from "../components/HealthQuestionaire";
-import Footer from "../components/Footer";
 
 
 const Dashboard = () => {
     return (
         <div className="main">
             <Header />
-            <DashboardInformationalMessage />
+            <DashboardInfoMessage />
             <div className="dashboard-container">
                 <HealthQuestionnaire />
             </div>
