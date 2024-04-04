@@ -43,6 +43,15 @@ export const ADD_QUESTIONNAIRE = gql`
   }
 `;
 
+export const UPDATE_USER = gql`
+  mutation updateUser($username: String, $email: String, $password: String) {
+    updateUser(username: $username, email: $email, password: $password) {
+      _id
+      username
+      email
+    }
+}`
+
 export const ADD_COMMENT = gql`
   mutation addComment($thoughtId: ID!, $commentText: String!) {
     addComment(thoughtId: $thoughtId, commentText: $commentText) {
