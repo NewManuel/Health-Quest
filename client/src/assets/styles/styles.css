@@ -272,6 +272,13 @@ footer h4 {
   position: relative;
 }
 
+.dashboardMessageContainer{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  color: white;
+}
+
 .dashboard-container:before {
   content: '';
   position: absolute;
