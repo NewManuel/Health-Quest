@@ -1,16 +1,16 @@
-import { Navigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import ProfileComponent from "../components/Profile";
 
-import ThoughtForm from '../components/ThoughtForm';
-import ThoughtList from '../components/ThoughtList';
-
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
-
-import Auth from '../utils/auth';
 
 const Profile = () => {
-  const { username: userParam } = useParams();
-
+  return (
+    <div className="main">
+      <Header />
+      <ProfileComponent />
+      <Footer />
+    </div>
+  )
 };
 
 export default Profile;

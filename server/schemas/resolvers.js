@@ -25,10 +25,42 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
+    addUser: async (parent, { username, email, password }, context) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       return { token, user };
+    },
+    updateUser: async (parent, { username, email, password }, context) => {
+      try {
+        // Get the user ID from the context
+        const userId = context.user._id;
+        console.log(userId);
+        // Search for the user by ID
+        const user = await User.findById(userId);
+
+        // If user is not found, throw an error
+        if (!user) {
+          throw new Error('User not found');
+        }
+
+        // Update user data if provided
+        if (email) {
+          user.email = email;
+        }
+        if (password) {
+          user.password = password;
+        }
+        if (username) {
+          user.username = username;
+        }
+        // Save the updated user data
+        await user.save();
+
+        // Return the updated user
+        return user;
+      } catch (error) {
+        throw new Error('Failed to update user');
+      }
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });

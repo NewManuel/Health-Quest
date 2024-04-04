@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         element: <Profile />
       }, {
         path: '/me',
-        element: <Profile />
+        //element: <Profile />
       }, {
         path: '/thoughts/:thoughtId',
         element: <SingleThought />
