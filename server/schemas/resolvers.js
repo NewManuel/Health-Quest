@@ -47,15 +47,15 @@ const resolvers = {
         if (email) {
           user.email = email;
         }
-    
+
         if (username) {
           user.username = username;
         }
         // Save the updated user data
         await user.save();
-
+        const newToken = signToken({ email: user.email, username: user.username, _id: user._id });
         // Return the updated user
-        return user;
+        return { user, token: newToken };
       } catch (error) {
         throw new Error('Failed to update user');
       }

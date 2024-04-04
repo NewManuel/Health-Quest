@@ -1,17 +1,17 @@
 import { useState } from 'react';
-//import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const ProfileComponent = () => {
-  //const history = useHistory();
-  console.log(Auth.getProfile.data);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: Auth.getProfile().data.username,
     email: Auth.getProfile().data.email
   });
   const [updateUser] = useMutation(UPDATE_USER);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -28,8 +28,15 @@ const ProfileComponent = () => {
         variables: { ...formData }
       });
       console.log('Profile updated:', data);
-      // Redirect to profile page
-     // history.push(`/profiles/${Auth.getProfile().data.username}`);
+
+      // Set the new token in local storage
+      Auth.redirect(data.updateUser.token);
+
+      // Set success message and redirect after 3 seconds
+      setSuccessMessage('Profile updated successfully! Redirecting to your notebook.');
+      setTimeout(() => {
+        navigate(`/dashboard`);
+      }, 3000); // Redirect after 3 seconds
     } catch (error) {
       console.error('Error updating profile:', error);
       // Handle error, show error message to user
@@ -39,6 +46,7 @@ const ProfileComponent = () => {
   return (
     <div className="update-profile">
       <h2>Update Profile</h2>
+      {successMessage && <p className="success-message">{successMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
