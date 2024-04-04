@@ -173,7 +173,7 @@ header h1 {
   /* Example font size for mobile */
 }
 
-.dashboardMessageContainer{
+.dashboardMessageContainer {
   max-width: 800px;
   margin: 0 auto;
   padding: 10px 20px;
@@ -257,8 +257,19 @@ header h1 {
 }
 
 .header-buttons>* {
-  margin: 10px 0;
+  margin: 10px 10px;
+  width: 80%;
   /* Adjust the top and bottom margins for the buttons */
+}
+
+.total-score-container {
+  text-align: center; /* Center the text */
+  padding: 20px; /* Add padding for spacing */
+  border-radius: 10px; /* Add rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow for emphasis */
+  margin: 20px auto; /* Center the container horizontally */
+  max-width: 400px; /* Limit the width of the container */
+  font-size: larger;
 }
 
 footer {
@@ -294,7 +305,7 @@ footer h4 {
   position: relative;
 }
 
-.dashboardMessageContainer{
+.dashboardMessageContainer {
   max-width: 800px;
   margin: 0 auto;
   padding: 10px 20px;
