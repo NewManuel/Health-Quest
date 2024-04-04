@@ -225,6 +225,28 @@ header h1 {
   /* Example text color on hover */
 }
 
+.my-profile-button {
+  background-color: #fff;
+  /* Example background color for button */
+  color: #007bff;
+  /* Example text color for button */
+  border: 1px solid #fff;
+  /* Example border for button */
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  /* Example font size for mobile */
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.my-profile-button:hover {
+  background-color: #007bff;
+  /* Example background color on hover */
+  color: #fff;
+  /* Example text color on hover */
+}
+
 .header-buttons {
   display: flex;
   flex-direction: column;
