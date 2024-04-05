@@ -1,14 +1,14 @@
-const { User, Questionnaire } = require('../models');
-const { findById } = require('../models/User');
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { User, Questionnaire } = require("../models");
+const { signToken } = require("../utils/auth");
+const { AuthenticationError } = require("apollo-server-errors");
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('questionnaires');
+      return User.find().populate("questionnaires");
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('questionnaires');
+      return User.findOne({ username }).populate("questionnaires");
     },
     questionnaires: async (parent, { userId }) => {
       console.log("User ID:", userId); // Log the user ID parameter
@@ -23,13 +23,17 @@ const resolvers = {
         const questionnaireIds = user.questionnaires;
 
         // Fetch the questionnaires based on their IDs
-        const questionnaires = await Promise.all(questionnaireIds.map(async (questionnaireId) => {
-          const questionnaire = await Questionnaire.findById(questionnaireId);
-          return questionnaire;
-        }));
+        const questionnaires = await Promise.all(
+          questionnaireIds.map(async (questionnaireId) => {
+            const questionnaire = await Questionnaire.findById(questionnaireId);
+            return questionnaire;
+          })
+        );
 
         // Sort the questionnaires by createdAt
-        const sortedQuestionnaires = questionnaires.sort((a, b) => b.createdAt - a.createdAt);
+        const sortedQuestionnaires = questionnaires.sort(
+          (a, b) => b.createdAt - a.createdAt
+        );
 
         return sortedQuestionnaires;
       } catch (error) {
@@ -38,15 +42,16 @@ const resolvers = {
       }
     },
 
-
     questionnaire: async (parent, { questionnaireId }) => {
       return Questionnaire.findOne({ _id: questionnaireId });
     },
     me: async (parent, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('questionnaires');
+        return User.findOne({ _id: context.user._id }).populate(
+          "questionnaires"
+        );
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 
@@ -66,7 +71,7 @@ const resolvers = {
 
         // If user is not found, throw an error
         if (!user) {
-          throw new Error('User not found');
+          throw new Error("User not found");
         }
 
         // Update user data if provided
@@ -79,11 +84,15 @@ const resolvers = {
         }
         // Save the updated user data
         await user.save();
-        const newToken = signToken({ email: user.email, username: user.username, _id: user._id });
+        const newToken = signToken({
+          email: user.email,
+          username: user.username,
+          _id: user._id,
+        });
         // Return the updated user
         return { user, token: newToken };
       } catch (error) {
-        throw new Error('Failed to update user');
+        throw new Error("Failed to update user");
       }
     },
     deleteUser: async (_, args, context) => {
@@ -138,7 +147,21 @@ const resolvers = {
 
       return { token, user };
     },
-    addQuestionnaire: async (parent, { questionnaireAuthor, hydration, nourishment, education, exercise, connections, sleep, gratitude, processedFoods }, context) => {
+    addQuestionnaire: async (
+      parent,
+      {
+        questionnaireAuthor,
+        hydration,
+        nourishment,
+        education,
+        exercise,
+        connections,
+        sleep,
+        gratitude,
+        processedFoods,
+      },
+      context
+    ) => {
       if (context.user) {
         // Create the questionnaire with the provided details
         const questionnaire = await Questionnaire.create({
@@ -150,7 +173,7 @@ const resolvers = {
           connections,
           sleep,
           gratitude,
-          processedFoods
+          processedFoods,
         });
 
         await User.findOneAndUpdate(
@@ -160,7 +183,7 @@ const resolvers = {
         // Return the created questionnaire
         return questionnaire;
       }
-      throw AuthenticationError('You must be logged in to perform this action');
+      throw AuthenticationError("You must be logged in to perform this action");
     },
     removeQuestionnaire: async (parent, { questionnaireId }, context) => {
       if (context.user) {
