@@ -4,6 +4,7 @@ import DashboardInfoMessage from "../components/DashboardInfoMessage";
 import HealthQuestionnaire from "../components/HealthQuestionaire";
 
 
+
 const Dashboard = () => {
     return (
         <div className="main">
@@ -12,6 +13,7 @@ const Dashboard = () => {
             <div className="dashboard-container">
                 <HealthQuestionnaire />
             </div>
+           
             <Footer />
         </div>
     )
