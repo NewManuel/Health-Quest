@@ -24,20 +24,36 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+export const ADD_QUESTIONNAIRE = gql`
+  mutation addQuestionnaire($questionnaireAuthor: String!, $hydration: Int!, $nourishment: Int!, $education: Int!, $exercise: Int!, $connections: Int!, $sleep: Int!, $gratitude: Int!, $processedFoods: Int!) {
+    addQuestionnaire(questionnaireAuthor: $questionnaireAuthor, hydration: $hydration, nourishment: $nourishment, education: $education, exercise: $exercise, connections: $connections, sleep: $sleep, gratitude: $gratitude, processedFoods: $processedFoods) {
       _id
-      thoughtText
-      thoughtAuthor
+      questionnaireAuthor
+      hydration
+      education
+      nourishment
+      exercise
+      connections
+      sleep
+      gratitude
+      processedFoods
+      updatedAt
       createdAt
-      comments {
-        _id
-        commentText
-      }
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation updateUser($username: String, $email: String) {
+    updateUser(username: $username, email: $email) {
+      token
+      user {
+        _id
+        username
+        email
+      }
+    }
+}`
 
 export const ADD_COMMENT = gql`
   mutation addComment($thoughtId: ID!, $commentText: String!) {

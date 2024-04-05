@@ -1,42 +1,41 @@
 const { Schema, model } = require('mongoose');
 
 const questionnaireSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
+  questionnaireAuthor: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  hydration: {
+    type: Number, // Assuming scores are numerical values
     required: true
   },
-  // Boolean fields for each question in the questionnaire
-  question1: {
-    type: Boolean,
+  nourishment: {
+    type: Number,
     required: true
   },
-  question2: {
-    type: Boolean,
+  education: {
+    type: Number,
     required: true
   },
-  question3: {
-    type: Boolean,
+  exercise: {
+    type: Number,
     required: true
   },
-  question4: {
-    type: Boolean,
+  connections: {
+    type: Number,
     required: true
   },
-  question5: {
-    type: Boolean,
+  sleep: {
+    type: Number,
     required: true
   },
-  question6: {
-    type: Boolean,
+  gratitude: {
+    type: Number,
     required: true
   },
-  question7: {
-    type: Boolean,
-    required: true
-  },
-  question8: {
-    type: Boolean,
+  processedFoods: {
+    type: Number,
     required: true
   },
   // Timestamps
