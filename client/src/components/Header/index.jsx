@@ -15,10 +15,13 @@ const Header = () => {
       <h1>HEALTH QUEST</h1>
       <div className='header-buttons'>
         <Link to="/previous-entries" className="view-entries-button">
-          View Previous Entries
+          Previous Entries
         </Link>
         <Link to={`/profiles/${username}`} className="my-profile-button">
           My Profile
+        </Link>
+        <Link to={`/graph/${username}`} className="my-profile-button">
+          View Graph
         </Link>
         <button className="logout-button" onClick={logout}>
           Logout
