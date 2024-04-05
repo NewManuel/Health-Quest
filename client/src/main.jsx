@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Dashboard from './pages/Dashboard.jsx';
 import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
+import Graph from './pages/Graph.jsx';
 import ErrorPage from './pages/ErrorPage';
 
 const router = createBrowserRouter([
@@ -33,7 +34,12 @@ const router = createBrowserRouter([
       {
         path: '/profiles/:username',
         element: <Profile />
-      }, {
+      },
+      {
+        path: '/graph/:username',
+        element: <Graph />
+      },
+      {
         path: '/me',
         //element: <Profile />
       }, {
