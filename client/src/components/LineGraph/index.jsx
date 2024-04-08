@@ -13,8 +13,9 @@ const LineGraph = () => {
     return Auth.getProfile().data._id;
   };
 
-  const { loading, error, data } = useQuery(QUERY_QUESTIONNAIRES, {
+  const { loading, error, data, refetch } = useQuery(QUERY_QUESTIONNAIRES, {
     variables: { userId: getUserId() },
+    fetchPolicy: 'network-only', // Ensure fresh data is fetched from the network
   });
 
   useEffect(() => {
