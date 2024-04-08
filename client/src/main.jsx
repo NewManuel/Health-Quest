@@ -6,7 +6,6 @@ import Home from './pages/HomePage.jsx';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard.jsx';
-import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Graph from './pages/Graph.jsx';
 import ErrorPage from './pages/ErrorPage';
@@ -38,13 +37,6 @@ const router = createBrowserRouter([
       {
         path: '/graph/:username',
         element: <Graph />
-      },
-      {
-        path: '/me',
-        //element: <Profile />
-      }, {
-        path: '/thoughts/:thoughtId',
-        element: <SingleThought />
       }
     ]
   },
