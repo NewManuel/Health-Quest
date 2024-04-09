@@ -225,11 +225,12 @@ header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin: 75px;
 }
 
 .go-back-container button {
   font-size: 1.2em;
+  background-color: white;
 }
 
 .total-score-container {
