@@ -39,6 +39,7 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     updateUser(username: String, email: String): Auth
+    deleteUser: User
     login(email: String!, password: String!): Auth
     addQuestionnaire(
         questionnaireAuthor: String!,
@@ -52,7 +53,6 @@ const typeDefs = `
         processedFoods: Int!
       ): Questionnaire
     removeQuestionnaire(questionnaireId: ID!): Questionnaire
-    removeComment(questionnaireId: ID!, commentId: ID!): Questionnaire
   }
 `;
 
