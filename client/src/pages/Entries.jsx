@@ -24,17 +24,14 @@ function getGrade(data) {
 
   return truePercentage;
 }
-function formatDate(date) {
-  const options = { year: "numeric", month: "short", day: "numeric" };
-  return new Date(date).toLocaleDateString(undefined, options);
-}
 
 function getDate(data) {
-  const timestamp = data.createdAt;
-  const dateString = formatDate(timestamp * 1000);
-  console.log(timestamp);
-  console.log(dateString);
-  return dateString;
+  const date = new Date(parseInt(data.createdAt));
+  const formattedDate = `${
+    date.getMonth() + 1
+  }/${date.getDate()}/${date.getFullYear()}`;
+  console.log(formattedDate);
+  return formattedDate;
 }
 const PreviousEntries = () => {
   const user = Auth.getProfile();

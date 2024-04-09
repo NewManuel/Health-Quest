@@ -13,7 +13,7 @@ function getColorStyle(grade) {
   if (grade <= 60) {
     color = "red";
   } else if (grade <= 75) {
-    color = "yellow";
+    color = "orange";
   } else if (grade <= 100) {
     color = "green";
   } else {
