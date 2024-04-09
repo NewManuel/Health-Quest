@@ -39,8 +39,9 @@ function getDate(data) {
 const PreviousEntries = () => {
   const user = Auth.getProfile();
   const userId = user.data._id;
-  const { loading, error, data } = useQuery(QUERY_QUESTIONNAIRES, {
+  const { loading, error, data, refetch } = useQuery(QUERY_QUESTIONNAIRES, {
     variables: { userId },
+    fetchPolicy: 'network-only'
   });
   const userData = data?.questionnaires || [];
   const ques = data?.questionnaires.map((q) => ({
