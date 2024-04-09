@@ -85,12 +85,14 @@ const ProfileComponent = () => {
         </div>
         <button type="submit">Update</button>
       </form>
-      <button onClick={() => setShowConfirmation(true)}>Delete Profile</button>
+      <button className='delete-profile-btn' onClick={() => setShowConfirmation(true)}>Delete Profile</button>
       {showConfirmation && (
         <div className="confirmation-modal">
           <p>Are you sure you want to delete your account?</p>
-          <button onClick={handleDeleteConfirmation}>Yes</button>
-          <button onClick={() => setShowConfirmation(false)}>No</button>
+          <div className="delete-button-container">
+            <button onClick={handleDeleteConfirmation}>Yes</button>
+            <button onClick={() => setShowConfirmation(false)}>No</button>
+          </div>
         </div>
       )}
     </div>
