@@ -1,16 +1,16 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ProfileComponent from "../components/Profile";
+import LineGraph from "../components/LineGraph";
 import { useLocation } from 'react-router-dom';
 import GoBackButton from '../components/GoBackButton';
 
 
-const Profile = () => {
+const Graph = () => {
   const location = useLocation();
   return (
     <div className="main">
       <Header />
-      <ProfileComponent />
+      <LineGraph />
       <div className="go-back-container">
         {location.pathname !== '/dashboard' && <GoBackButton />}
       </div>
@@ -19,4 +19,4 @@ const Profile = () => {
   )
 };
 
-export default Profile;
+export default Graph;

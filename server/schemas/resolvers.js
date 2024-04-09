@@ -95,6 +95,41 @@ const resolvers = {
         throw new Error("Failed to update user");
       }
     },
+    deleteUser: async (_, args, context) => {
+      // Check if the user is authenticated
+      if (!context.user) {
+        throw new AuthenticationError('Authentication required');
+      }
+
+      try {
+        // Get the user's ID from the context
+        const userId = context.user._id;
+
+        // Find the user by ID
+        const user = await User.findById(userId);
+
+        // If user doesn't exist, throw an error
+        if (!user) {
+          throw new Error('User not found');
+        }
+
+        // Get IDs of all questionnaires associated with the user
+        const questionnaireIds = user.questionnaires;
+
+        // Delete all questionnaires associated with the user
+        await Questionnaire.deleteMany({ _id: { $in: questionnaireIds } });
+
+        // Remove the user from the database
+        await User.deleteOne({ _id: userId });
+
+
+        // Return the deleted user
+        return user;
+      } catch (error) {
+        console.error(error);
+        throw new Error('Failed to delete user');
+      }
+    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -166,7 +201,7 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-  },
+  }
 };
 
 module.exports = resolvers;

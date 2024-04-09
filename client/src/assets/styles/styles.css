@@ -260,20 +260,39 @@ header h1 {
 .header-buttons {
   margin: 10px 10px;
   width: 80%;
-  .header-buttons > * {
-    margin: 10px 0;
-    /* Adjust the top and bottom margins for the buttons */
-  }
+  /* Adjust the top and bottom margins for the buttons */
+}
 
-  .total-score-container {
-    text-align: center; /* Center the text */
-    padding: 20px; /* Add padding for spacing */
-    border-radius: 10px; /* Add rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow for emphasis */
-    margin: 20px auto; /* Center the container horizontally */
-    max-width: 400px; /* Limit the width of the container */
-    font-size: larger;
-  }
+.go-back-container {
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* Center vertically */
+  margin-top: 20px;
+  /* Adjust margin-top as needed */
+}
+
+.go-back-container button {
+  font-size: 1.2em;
+  /* Adjust font size as needed */
+}
+
+.total-score-container {
+  text-align: center;
+  /* Center the text */
+  padding: 20px;
+  /* Add padding for spacing */
+  border-radius: 10px;
+  /* Add rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* Add a shadow for emphasis */
+  margin: 20px auto;
+  /* Center the container horizontally */
+  max-width: 400px;
+  /* Limit the width of the container */
+  font-size: larger;
+}
 
   footer {
     color: white;

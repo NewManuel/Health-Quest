@@ -55,6 +55,30 @@ export const UPDATE_USER = gql`
     }
 }`
 
+export const DELETE_USER = gql`
+mutation deleteUser {
+  deleteUser {
+    _id
+    username
+    email
+    password
+    questionnaires {
+      _id
+      questionnaireAuthor
+      hydration
+      nourishment
+      education
+      exercise
+      connections
+      sleep
+      gratitude
+      processedFoods
+      createdAt
+      updatedAt
+    }
+  }
+}`
+
 export const ADD_COMMENT = gql`
   mutation addComment($thoughtId: ID!, $commentText: String!) {
     addComment(thoughtId: $thoughtId, commentText: $commentText) {
