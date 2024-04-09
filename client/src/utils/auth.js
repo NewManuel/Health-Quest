@@ -27,7 +27,7 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
-  redirect(idToken) {
+  setToken(idToken) {
     localStorage.setItem('id_token', idToken)
   }
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { UPDATE_USER } from '../../utils/mutations';
+import { UPDATE_USER, DELETE_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const ProfileComponent = () => {
@@ -11,7 +11,9 @@ const ProfileComponent = () => {
     email: Auth.getProfile().data.email
   });
   const [updateUser] = useMutation(UPDATE_USER);
+  const [deleteUser] = useMutation(DELETE_USER);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -30,7 +32,7 @@ const ProfileComponent = () => {
       console.log('Profile updated:', data);
 
       // Set the new token in local storage
-      Auth.redirect(data.updateUser.token);
+      Auth.setToken(data.updateUser.token);
 
       // Set success message and redirect after 3 seconds
       setSuccessMessage('Profile updated successfully! Redirecting to your notebook.');
@@ -39,6 +41,19 @@ const ProfileComponent = () => {
       }, 3000); // Redirect after 3 seconds
     } catch (error) {
       console.error('Error updating profile:', error);
+      // Handle error, show error message to user
+    }
+  };
+
+  const handleDeleteConfirmation = async () => {
+    try {
+      await deleteUser();
+      // Clear id token
+      Auth.logout();
+      // Redirect to home page
+      navigate('/');
+    } catch (error) {
+      console.error('Error deleting profile:', error);
       // Handle error, show error message to user
     }
   };
@@ -70,8 +85,17 @@ const ProfileComponent = () => {
         </div>
         <button type="submit">Update</button>
       </form>
+      <button onClick={() => setShowConfirmation(true)}>Delete Profile</button>
+      {showConfirmation && (
+        <div className="confirmation-modal">
+          <p>Are you sure you want to delete your account?</p>
+          <button onClick={handleDeleteConfirmation}>Yes</button>
+          <button onClick={() => setShowConfirmation(false)}>No</button>
+        </div>
+      )}
     </div>
   );
+
 };
 
 export default ProfileComponent;
