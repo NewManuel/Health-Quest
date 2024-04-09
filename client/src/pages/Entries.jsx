@@ -22,7 +22,9 @@ function getGrade(data) {
   // Calculate the percentage of true values
   const truePercentage = (trueCount / booleanValues.length) * 100;
 
-  return truePercentage;
+  const roundedScore = Math.round(truePercentage);
+
+  return roundedScore;
 }
 
 function getDate(data) {
