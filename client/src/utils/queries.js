@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
   query user($username: String!) {
@@ -63,6 +63,23 @@ export const QUERY_ME = gql`
         thoughtAuthor
         createdAt
       }
+    }
+  }
+`;
+export const QUESTIONNAIRES_QUERY = gql`
+  query QUESTIONNAIRES($username: String) {
+    questionnaires(username: $username) {
+      _id
+      createdAt
+      question1
+      question2
+      question3
+      question4
+      question5
+      question6
+      question7
+      question8
+      updatedAt
     }
   }
 `;
