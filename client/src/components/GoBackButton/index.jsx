@@ -1,4 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import * as React from "react";
+import Button from "@mui/material/Button";
 
 const GoBackButton = () => {
   const navigate = useNavigate();
@@ -8,9 +10,9 @@ const GoBackButton = () => {
   };
 
   return (
-    <button onClick={goBack}>
+    <Button variant="outlined" onClick={goBack}>
       &larr; Go Back
-    </button>
+    </Button>
   );
 };
 

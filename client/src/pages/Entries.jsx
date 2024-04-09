@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import EntryTable from "../components/EntryTable";
+import GoBackButton from "../components/GoBackButton";
 
 import Auth from "../../src/utils/auth";
 import { QUERY_QUESTIONNAIRES } from "../../src/utils/queries";
@@ -52,6 +53,9 @@ const PreviousEntries = () => {
       <Header />
       <div className="entry-container">
         {userData && <EntryTable userData={ques} />}
+      </div>
+      <div className="go-back-container">
+        <GoBackButton />
       </div>
       <Footer />
     </div>
