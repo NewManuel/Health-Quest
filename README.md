@@ -12,7 +12,7 @@ We built this project because we saw a need for a comprehensive habit tracking s
 
 ***What problem does it solve?***
 
-The Health Quest Habit Tracker addresses the challenge of establishing and maintaining healthy habits in today's fast-paced world. It simplifies the habit tracking process, empowers users to set and achieve their health goals, and provides valuable feedback and encouragement along the way. By offering features such as visual progress tracking, customizable reminders, and community support, the application helps users overcome common barriers to habit formation and fosters long-term behavior change.
+The Health Quest Habit Tracker addresses the challenge of establishing and maintaining healthy habits in today's fast-paced world. It simplifies the habit tracking process, empowers users to set and achieve their health goals, and provides valuable feedback and encouragement along the way. By offering features such as visual progress tracking, the application helps users overcome common barriers to habit formation and fosters long-term behavior change.
 
 ***What did we learn?***
 
@@ -21,13 +21,13 @@ Full-stack Development: We deepened our understanding of the MERN stack (MongoDB
 User Authentication: We implemented secure user authentication using JSON Web Tokens (JWT) to protect user data and ensure a safe and personalized experience for each user.
 Data Visualization: We explored different data visualization libraries such as Chart.js and React-Chartjs-2 to create interactive charts and graphs that enhance the user experience and provide valuable insights into habit progress.
 Deployment: We gained experience deploying web applications using platforms like Render, enabling us to share our project with a wider audience and showcase our work to potential users and collaborators.
-Community Engagement: We recognized the importance of community support in promoting behavior change and learned how to foster engagement and interaction within the Health Quest Habit Tracker community through features like challenges, discussions, and social sharing.
 
 ## Table of Contents
 
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Screenshots](#screenshots)
 - [Credits](#credits)
 - [License](#license)
 
@@ -36,7 +36,56 @@ Community Engagement: We recognized the importance of community support in promo
 - User Authentication: Secure user authentication system allows users to sign up, log in, and access their personalized habit tracking dashboard.
 - Habit Tracking: Create, update, and delete custom habits to track daily progress towards health and wellness goals.
 - Visual Progress Tracking: Interactive charts and graphs visualize habit streaks, completion rates, and overall progress, providing motivation and insight into user habits.
-Reminders and Notifications: Set customizable reminders and notifications to help users stay accountable and consistent with their habits.
 - Responsive Design: The application is fully responsive and optimized for use on desktop, tablet, and mobile devices, ensuring a seamless user experience across all platforms.
+
+## Installation
+
+Follow these steps to install and set up the project: 
+1. **Clone the Repository:** `git clone git@github.com:NewManuel/Health-Quest.git` 
+2. **Navigate to Project Directory:** `cd Health-Quest` 
+3. **Install Dependencies:** `npm install` 
+4. **Start the Application:** `npm run dev`
+5. **Access the Application:** Once the application is running, access it through a web browser or command line interface as per your project's specifications. You may need to navigate to `localhost/3000` 
+
+## Usage
+
+Follow these steps to use the project:
+
+1. **Access the Application:**
+   Open your web browser and navigate to the [site](https://health-quest-gun9.onrender.com/).
+2. **Create an Account:**
+   If you're accessing the application for the first time, you may need to create an account. Look for the "Sign Up" link on the application's homepage and follow the prompts to create a new account. You will be required to provide an email address, username, and password.
+
+3. **Interact with the Application:**
+   Once logged in, explore the features and functionalities provided by the application. This may include creating, editing, or deleting content, and managing settings.
+
+5. **View Results:**
+   As you interact with the application, view the results or output according to the actions performed. 
+
+## Screenshots
+
+Below are screenshots showcasing various features of the application:
+
+1. **Home Page:**
+   ![Home Page](./client/src/assets/images/homepage.PNG)
+
+2. **Create Account Form:**
+   ![Create Account Form](./client/src/assets/images/createAccountForm.PNG)
+
+3. **User Dashboard:**
+   ![User Dashboard](./client/src/assets/images/userdashboard.PNG)
+
+4. **Profile Page:**
+   ![Profile Page](./client/src/assets/images/profilepage.PNG)
+
+## Credits
+
+[Nick Smith](https://github.com/nicklearning), [Mario Partida](https://github.com/mariop578), [Anthony Castillo](https://github.com/ac1745198), [Emmanuel Nwabueze](https://github.com/NewManuel)
+
+## License
+
+MIT License
+
+
 
 
